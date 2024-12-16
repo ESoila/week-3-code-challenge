@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<link rel="stylesheet" href="style.css">
+<body>
+ <header> 
+        <nav>
+            <a href="#available-movies" onclick="showSection('available-movies')">Available Movies</a>
+            <a href="#buy-a-ticket" onclick="showSection('movie-details')">Buy a Ticket</a>
+        </nav>
+    
+        <h2>Now Showing</h2>
+    
+</header>
+<main style="display: flex; gap: 20px; margin-top: 20px;">
+    <section id="available-movies" style = "width: 30%;">
+    <div>   
+        <h3>Now Showing</h3>
+        <ul id="films"></ul>
+    </div>
+</section>
+
+    <div id="movie-details" style = "width: 70%;">
+        <h1 id="title">Movie Title</h1>
+        <img id="poster" alt="Movie Poster">
+        <p>Runtime:<span id="runtime">--</span> mins</p>
+        <p>Showtime<span id="showtime">--</span></p>
+        <p>Available Tickets:<span id="available-tickets">--</span></p>
+        <button id="buy-ticket" disabled>Buy Ticket</button>
+    </div>
+</main>
+    
+<script src="index.js"></script>
+
+    
+</body>
+</html>
+
