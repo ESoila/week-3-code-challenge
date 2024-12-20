@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
                 const li = document.createElement("li");
                 li.textContent = film.title;
-                li.className = "list-group-item film item";
+                li.className = "list-group-item film-item";
                 li.addEventListener("click", () => showMovieDetails(film));
                 filmsList.appendChild(li);
             });
@@ -31,7 +31,6 @@ function showMovieDetails(film) {
     document.getElementById("available-tickets").textContent = availableTickets > 0 ? availableTickets : "Sold Out";
     document.getElementById("movie-details").style.display = "block";
 
-    //. Activate buy button.
     const buyButton = document.getElementById("buy-ticket");
     if (availableTickets > 0) {
         buyButton.disabled = false;
@@ -40,7 +39,6 @@ function showMovieDetails(film) {
         buyButton.disabled = true;
     }
 }
-
 function buyTicket(film){
 
     const availableTickets = film.capacity - film.tickets_sold;
@@ -49,11 +47,22 @@ function buyTicket(film){
     if (availableTickets > 0) {
         film.tickets_sold += 1;
          
-        const newAvailableTickets = film.capacity - film.ticket_sold;
+        const newAvailableTickets = film.capacity - film.tickets_sold;
         document.getElementById("available-tickets").textContent = newAvailableTickets > 0 ? newAvailableTickets : "Tickets Sold Out";
 
         if (newAvailableTickets === 0) {
             document.getElementById("buy-ticket").disabled = true;
+            const movieList = document.getElementById("films");
+            const nowshowingList = movieList.querySelectorAll(".film-item");
+            nowshowingList.forEach(movie=> {
+                if (movie.textContent === film.title){
+                    movieList.removeChild(movie);
+                }
+            });
+            const nowShowingMovieTitle = document.getElementById("title").textContent;
+            if (nowShowingMovieTitle === film.title){
+                document.getElementById("movie-details").style.display = "none";
+            }
         }
     }
 }
